@@ -28,6 +28,8 @@ static void linkedlist_dealloc_node(struct node *node);
 struct list *linkedlist_alloc_list();
 void linkedlist_append(struct list *list, int data);
 void linkedlist_prepend(struct list *list, int data);
+void linkedlist_remove_head(struct list *list);
+void linkedlist_remove_tail(struct list *list);
 void linkedlist_dealloc_list(struct list *list);
 
 #endif /* LINKEDLIST_H_ */
