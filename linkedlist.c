@@ -75,6 +75,7 @@ void linkedlist_remove_tail(struct list *list) {
 	linkedlist_dealloc_node(list->tail);
 
 	list->tail = temp;
+	list->tail->next = NULL;
 }
 
 void linkedlist_dealloc_list(struct list *list) {
