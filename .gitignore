@@ -1,0 +1,6 @@
+#Compiled Files
+*.o
+
+#Linux Temp
+*~
+
