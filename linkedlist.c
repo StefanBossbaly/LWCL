@@ -27,7 +27,7 @@ static struct node *linkedlist_alloc_node(struct node *next, int data) {
 	return node;
 }
 
-void linkedlist_dealloc_node(struct node *node) {
+static void linkedlist_dealloc_node(struct node *node) {
 	free(node);
 }
 
@@ -39,7 +39,7 @@ struct list *linkedlist_alloc_list() {
 		exit(1);
 	}
 
-	list->head = list->tail = linkedlist_alloc_node(NULL, NULL);
+	list->head = list->tail = linkedlist_alloc_node(NULL, 0);
 	list->size = 0;
 
 	return list;
