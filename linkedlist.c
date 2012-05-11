@@ -49,11 +49,13 @@ void linkedlist_append(struct list *list, int data) {
 	struct node *temp = linkedlist_alloc_node(NULL, data);
 	list->tail->next = temp;
 	list->tail = temp;
+	list->size++;
 }
 
 void linkedlist_prepend(struct list *list, int data) {
 	struct node *temp = list->head->next;
 	list->head->next = linkedlist_alloc_node(temp, data);
+	list->size++;
 }
 
 void linkedlist_remove_head(struct list *list) {
@@ -63,6 +65,7 @@ void linkedlist_remove_head(struct list *list) {
 		struct node *temp2 = temp->next;
 		linkedlist_dealloc_node(temp);
 		list->head->next = temp2;
+		list->size--;
 	}
 }
 void linkedlist_remove_tail(struct list *list) {
@@ -76,6 +79,7 @@ void linkedlist_remove_tail(struct list *list) {
 
 	list->tail = temp;
 	list->tail->next = NULL;
+	list->size--;
 }
 
 void linkedlist_dealloc_list(struct list *list) {
