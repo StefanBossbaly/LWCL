@@ -22,7 +22,7 @@ struct list {
 //Node Operations
 static struct node *linkedlist_alloc_node_data(int data);
 static struct node *linkedlist_alloc_node(struct node *next, int data);
-static void linkedlist_dealloc_node(struct node *node);
+static inline void linkedlist_dealloc_node(struct node *node);
 
 //List Operations
 struct list *linkedlist_alloc_list();

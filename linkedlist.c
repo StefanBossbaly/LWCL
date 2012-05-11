@@ -27,7 +27,7 @@ static struct node *linkedlist_alloc_node(struct node *next, int data) {
 	return node;
 }
 
-static void linkedlist_dealloc_node(struct node *node) {
+static inline void linkedlist_dealloc_node(struct node *node) {
 	free(node);
 }
 
