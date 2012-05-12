@@ -15,8 +15,14 @@ static struct node *linkedlist_alloc_node(struct node *next, void *data, size_t 
 	}
 
 	node->next = next;
-	node->data = malloc(size);
-	memcpy(node->data, data, size);
+	
+	if (data != NULL) {
+	    node->data = malloc(size);
+	    memcpy(node->data, data, size);
+	}
+	else {
+	    node->data = NULL;
+	}
 
 	return node;
 }
@@ -34,8 +40,7 @@ struct list *linkedlist_alloc_list() {
 		exit(1);
 	}
 
-    int data = 0;
-	list->head = list->tail = linkedlist_alloc_node(NULL, &data, sizeof(int));
+	list->head = list->tail = linkedlist_alloc_node(NULL, NULL, 0);
 	
 	if (list->head == NULL) {
 	    printf("Error allocating memory");

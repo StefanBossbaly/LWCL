@@ -10,7 +10,7 @@
  */
 
 void print_list(struct list *list) {
-	struct node *temp = list->head;
+	struct node *temp = list->head->next;
 	while (temp != NULL) {
 		printf("%i->", *((int *)temp->data));
 		temp = temp->next;
