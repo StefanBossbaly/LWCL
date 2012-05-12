@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "linkedlist.h"
 
 /*
@@ -8,12 +6,7 @@
  *  Created on: May 10, 2012
  *      Author: stefan
  */
-
-static struct node *linkedlist_alloc_node_data(int data) {
-	return linkedlist_alloc_node(NULL, data);
-}
-
-static struct node *linkedlist_alloc_node(struct node *next, int data) {
+static struct node *linkedlist_alloc_node(struct node *next, void *data, size_t size) {
 	struct node *node = malloc(sizeof(struct node));
 
 	if (node == NULL) {
@@ -22,12 +15,14 @@ static struct node *linkedlist_alloc_node(struct node *next, int data) {
 	}
 
 	node->next = next;
-	node->data = data;
+	node->data = malloc(size);
+	memcpy(node->data, data, size);
 
 	return node;
 }
 
 static inline void linkedlist_dealloc_node(struct node *node) {
+    free(node->data);
 	free(node);
 }
 
@@ -39,22 +34,23 @@ struct list *linkedlist_alloc_list() {
 		exit(1);
 	}
 
-	list->head = list->tail = linkedlist_alloc_node(NULL, 0);
+    int data = 0;
+	list->head = list->tail = linkedlist_alloc_node(NULL, &data, sizeof(int));
 	list->size = 0;
 
 	return list;
 }
 
-void linkedlist_append(struct list *list, int data) {
-	struct node *temp = linkedlist_alloc_node(NULL, data);
+void linkedlist_append(struct list *list, void *data, size_t size) {
+	struct node *temp = linkedlist_alloc_node(NULL, data, size);
 	list->tail->next = temp;
 	list->tail = temp;
 	list->size++;
 }
 
-void linkedlist_prepend(struct list *list, int data) {
+void linkedlist_prepend(struct list *list, void *data, size_t size) {
 	struct node *temp = list->head->next;
-	list->head->next = linkedlist_alloc_node(temp, data);
+	list->head->next = linkedlist_alloc_node(temp, data, size);
 	list->size++;
 }
 

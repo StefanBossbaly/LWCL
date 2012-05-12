@@ -8,9 +8,13 @@
 #ifndef LINKEDLIST_H_
 #define LINKEDLIST_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+
 struct node {
 	struct node *next;
-	int data;
+	void *data;
+	size_t data_size;
 };
 
 struct list {
@@ -20,14 +24,13 @@ struct list {
 };
 
 //Node Operations
-static struct node *linkedlist_alloc_node_data(int data);
-static struct node *linkedlist_alloc_node(struct node *next, int data);
+static struct node *linkedlist_alloc_node(struct node *next, void *data, size_t size);
 static inline void linkedlist_dealloc_node(struct node *node);
 
 //List Operations
 struct list *linkedlist_alloc_list();
-void linkedlist_append(struct list *list, int data);
-void linkedlist_prepend(struct list *list, int data);
+void linkedlist_append(struct list *list, void *data, size_t size);
+void linkedlist_prepend(struct list *list, void *data, size_t size);
 void linkedlist_remove_head(struct list *list);
 void linkedlist_remove_tail(struct list *list);
 void linkedlist_dealloc_list(struct list *list);
