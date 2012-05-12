@@ -36,6 +36,12 @@ struct list *linkedlist_alloc_list() {
 
     int data = 0;
 	list->head = list->tail = linkedlist_alloc_node(NULL, &data, sizeof(int));
+	
+	if (list->head == NULL) {
+	    printf("Error allocating memory");
+		exit(1);
+	}
+	
 	list->size = 0;
 
 	return list;
