@@ -95,6 +95,7 @@ int linkedlist_contains(struct list *list, void *data, int (*compare_to)(void *,
     while (temp != NULL) {
         if (compare_to(data, temp->data) == 0)
             return 1;
+        temp = temp->next;
     }
     
     return 0;
