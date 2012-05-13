@@ -89,6 +89,17 @@ void linkedlist_remove_tail(struct list *list) {
 	list->size--;
 }
 
+int linkedlist_contains(struct list *list, void *data, int (*compare_to)(void *, void *)) {
+    struct node *temp = list->head->next;
+    
+    while (temp != NULL) {
+        if (compare_to(data, temp->data) == 0)
+            return 1;
+    }
+    
+    return 0;
+}
+
 void linkedlist_dealloc_list(struct list *list) {
 	struct node *temp = list->head;
 

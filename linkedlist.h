@@ -34,5 +34,6 @@ void linkedlist_prepend(struct list *list, void *data, size_t size);
 void linkedlist_remove_head(struct list *list);
 void linkedlist_remove_tail(struct list *list);
 void linkedlist_dealloc_list(struct list *list);
+int linkedlist_contains(struct list *list, void *data, int (*compare_to)(void *, void *));
 
 #endif /* LINKEDLIST_H_ */
