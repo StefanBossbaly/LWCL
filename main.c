@@ -19,12 +19,22 @@ void print_list(struct list *list) {
 	printf("NULL\n");
 }
 
+int compare(void *num1, void *num2) {
+    return *((int *) num1) - *((int *) num2);
+}
+
 int main(void) {
 	struct list *my_list = linkedlist_alloc_list();
-	int test = 5;
-
-	linkedlist_append(my_list, &test, sizeof(int));
-	print_list(my_list);
+	
+	int i = 0;
+	
+	for (i = 0; i <= 100; i++) {
+	 	linkedlist_append(my_list, &i, sizeof(int));   
+	}
+	
+	int test = 40;
+	
+	printf("%i\n", linkedlist_contains(my_list, &test, compare));
 	
 	linkedlist_dealloc_list(my_list);
 
