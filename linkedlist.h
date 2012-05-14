@@ -1,10 +1,3 @@
-/*
- * linkedlist.h
- *
- *  Created on: May 10, 2012
- *      Author: stefan
- */
-
 #ifndef LINKEDLIST_H_
 #define LINKEDLIST_H_
 

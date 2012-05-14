@@ -1,11 +1,5 @@
 #include "linkedlist.h"
 
-/*
- * linkedlist.c
- *
- *  Created on: May 10, 2012
- *      Author: stefan
- */
 static struct node *linkedlist_alloc_node(struct node *next, void *data, size_t size) {
 	struct node *node = malloc(sizeof(struct node));
 

@@ -2,13 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * main.c
- *
- *  Created on: May 10, 2012
- *      Author: stefan
- */
-
 void print_list(struct list *list) {
 	struct node *temp = list->head->next;
 	while (temp != NULL) {
