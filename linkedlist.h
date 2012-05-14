@@ -28,5 +28,9 @@ void linkedlist_remove_head(struct list *list);
 void linkedlist_remove_tail(struct list *list);
 void linkedlist_dealloc_list(struct list *list);
 int linkedlist_contains(struct list *list, void *data, int (*compare_to)(void *, void *));
+void linkedlist_sort(struct list *list, int (*compare_to)(void *, void *));
+static struct node *linkedlist_merge_sort(struct node *node, int (*compare_to)(void *, void *));
+struct node *linkedlist_sort_middle(struct node *node);
+struct node *linkedlist_merge(struct node *left, struct node *right, int (*compare_to)(void *, void *));
 
 #endif /* LINKEDLIST_H_ */
