@@ -51,6 +51,14 @@ void *vector_get(struct vector *vector, int index) {
 	return vector->elements[index]->data;
 }
 
+void *vector_insert(struct vector *vector, int index, void *data, size_t size) {
+	if (index < 0 || index > vector->length)
+		return;
+
+	vector->elements[index]->data = data;
+	vector->elements[index]->size = size;
+}
+
 static void vector_ensure_capacity(struct vector *vector) {
 	if ((vector->length + 1) == vector->capacity) {
 		vector->elements = (struct element **) realloc(vector->elements, sizeof(struct element) * 2 * vector->capacity);

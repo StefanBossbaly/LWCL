@@ -26,6 +26,7 @@ struct vector *vector_alloc();
 struct vector *vector_alloc_with_size(size_t size);
 void vector_add(struct vector *vector, void *data, size_t size);
 void *vector_get(struct vector *vector, int index);
+void *vector_insert(struct vector *vector, int index, void *data, size_t size);
 
 static void vector_ensure_capacity(struct vector *vector);
 
