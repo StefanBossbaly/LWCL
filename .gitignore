@@ -1,6 +1,13 @@
 #Compiled Files
 *.o
+*.out
 
 #Linux Temp
 *~
+
+#Eclipse IDE
+.cproject
+.project
+.settings/
+Debug/
 
