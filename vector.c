@@ -17,6 +17,11 @@ struct element *element_alloc(void *data, size_t size) {
 	return element;
 }
 
+static void element_dealloc(struct element *element) {
+	free(element->data);
+	free(element);
+}
+
 struct vector *vector_alloc() {
 	return vector_alloc_with_size(VEC_SIZE);
 }
@@ -57,6 +62,19 @@ void *vector_insert(struct vector *vector, int index, void *data, size_t size) {
 
 	vector->elements[index]->data = data;
 	vector->elements[index]->size = size;
+}
+
+void vector_dealloc(struct vector *vector) {
+	int index = 0;
+	for (;;) {
+		if (vector->elements[index] == NULL)
+			break;
+
+		element_dealloc(vector->elements[index]);
+		index++;
+	}
+
+	free(vector);
 }
 
 static void vector_ensure_capacity(struct vector *vector) {
