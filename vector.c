@@ -3,6 +3,11 @@
 struct element *element_alloc(void *data, size_t size) {
 	struct element *element = (struct element *) malloc(sizeof(struct element));
 
+	if (element == NULL) {
+		printf("Error allocating memory");
+		exit(1);
+	}
+
 	if (data != NULL) {
 		element->data = malloc(size);
 		memcpy(element->data, data, size);
@@ -47,8 +52,8 @@ void *vector_get(struct vector *vector, int index) {
 }
 
 static void vector_ensure_capacity(struct vector *vector) {
-	if (vector->length == vector->capacity) {
-		vector->elements = realloc(vector->elements, sizeof(vector->capacity * 2));
+	if ((vector->length + 1) == vector->capacity) {
+		vector->elements = (struct element **) realloc(vector->elements, sizeof(struct element) * 2 * vector->capacity);
 		vector->capacity *= 2;
 	}
 }
