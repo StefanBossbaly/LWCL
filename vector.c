@@ -38,14 +38,7 @@ struct vector *vector_alloc_with_size(size_t size) {
 
 void vector_add(struct vector *vector, void *data, size_t size) {
 	vector_ensure_capacity(vector);
-
-	if (vector->elements[vector->length] == NULL) {
-		vector->elements[vector->length] = element_alloc(data, size);
-	} else {
-		vector->elements[vector->length]->data = data;
-		vector->elements[vector->length]->size = size;
-	}
-
+	vector->elements[vector->length] = element_alloc(data, size);
 	vector->length++;
 }
 
@@ -60,20 +53,18 @@ void *vector_insert(struct vector *vector, int index, void *data, size_t size) {
 	if (index < 0 || index > vector->length)
 		return;
 
-	vector->elements[index]->data = data;
-	vector->elements[index]->size = size;
+	element_dealloc(vector->elements[index]);
+	vector->elements[index] = element_alloc(data, size);
 }
 
 void vector_dealloc(struct vector *vector) {
-	int index = 0;
-	for (;;) {
-		if (vector->elements[index] == NULL)
-			break;
+	int i = 0;
 
-		element_dealloc(vector->elements[index]);
-		index++;
+	for (i = 0; i < vector->length; i++) {
+		element_dealloc(vector->elements[i]);
 	}
 
+	free(vector->elements);
 	free(vector);
 }
 
