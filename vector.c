@@ -49,7 +49,7 @@ void *vector_get(struct vector *vector, int index) {
 	return vector->elements[index]->data;
 }
 
-void *vector_insert(struct vector *vector, int index, void *data, size_t size) {
+void vector_insert(struct vector *vector, int index, void *data, size_t size) {
 	if (index < 0 || index > vector->length)
 		return;
 
