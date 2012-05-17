@@ -4,6 +4,7 @@
 
 void print_list(struct list *list) {
 	struct node *temp = list->head->next;
+	printf("head->");
 	while (temp != NULL) {
 		printf("%i->", *((int *)temp->data));
 		temp = temp->next;
@@ -20,14 +21,14 @@ int main(void) {
 	struct list *my_list = linkedlist_alloc_list();
 	
 	int i = 0;
+	for (i = 1000000; i > 0; i--)
+	    linkedlist_append(my_list, &i, sizeof(int));
+	    
 	
-	for (i = 0; i <= 100; i++) {
-	 	linkedlist_append(my_list, &i, sizeof(int));   
-	}
+	//print_list(my_list);
 	
-	int test = 40;
-	
-	printf("%i\n", linkedlist_contains(my_list, &test, compare));
+	linkedlist_sort(my_list, compare);
+	//print_list(my_list);
 	
 	linkedlist_dealloc_list(my_list);
 
