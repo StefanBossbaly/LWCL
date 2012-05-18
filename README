@@ -9,7 +9,14 @@ structures. This is a great solution for simple programs or if you
 need data strutures low power devices (for example Arduino).
 
 --- Compiling ---
-gcc linkedlist.c main.c -o c_library
+This project uses a make file to build. Each data structure has its
+own test program. The name of the test program is the name of the data
+structure appended with "test". For example if I wanted to build the
+vector test program, the name of the build target would be 
+"vectortest". And the make command to build it would be ...
+make vectortest
 
 --- Executing --
-./c_library
+To execute the test program simply run the program from the terminal 
+like so
+./vectortest
