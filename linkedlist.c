@@ -106,29 +106,7 @@ void linkedlist_dealloc_list(struct list *list) {
 	free(list);
 }
 
-void linkedlist_sort(struct list *list, int (*compare_to)(void *, void *)) {
-	struct node *temp = linkedlist_merge_sort(list->head->next, compare_to);
-	list->head->next = temp;
-}
-
-static struct node *linkedlist_merge_sort(struct node *node, int (*compare_to)(void *, void *)) {
-	if (node == NULL || node->next == NULL)
-		return node;
-
-	struct node *middle = linkedlist_sort_middle(node);
-
-	struct node *left = node;
-	struct node *right = middle->next;
-
-	middle->next = NULL;
-
-	left = linkedlist_merge_sort(left, compare_to);
-	right = linkedlist_merge_sort(right, compare_to);
-
-	return linkedlist_merge(left, right, compare_to);
-}
-
-static struct node *linkedlist_sort_middle(struct node *node) {
+struct node *linkedlist_sort_middle(struct node *node) {
 	if (node == NULL)
 		return node;
 
@@ -169,6 +147,28 @@ static struct node *linkedlist_merge(struct node *left, struct node *right, int 
 	linkedlist_dealloc_node(dummy);
 
 	return current;
+}
+
+struct node *linkedlist_merge_sort(struct node *node, int (*compare_to)(void *, void *)) {
+	if (node == NULL || node->next == NULL)
+		return node;
+
+	struct node *middle = linkedlist_sort_middle(node);
+
+	struct node *left = node;
+	struct node *right = middle->next;
+
+	middle->next = NULL;
+
+	left = linkedlist_merge_sort(left, compare_to);
+	right = linkedlist_merge_sort(right, compare_to);
+
+	return linkedlist_merge(left, right, compare_to);
+}
+
+void linkedlist_sort(struct list *list, int (*compare_to)(void *, void *)) {
+	struct node *temp = linkedlist_merge_sort(list->head->next, compare_to);
+	list->head->next = temp;
 }
 
 struct list_iterator *linkedlist_iterator(struct list *list) {

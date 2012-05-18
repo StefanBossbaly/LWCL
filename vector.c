@@ -1,5 +1,12 @@
 #include "vector.h"
 
+static void vector_ensure_capacity(struct vector *vector) {
+	if ((vector->length + 1) == vector->capacity) {
+		vector->elements = (struct element **) realloc(vector->elements, sizeof(struct element) * 2 * vector->capacity);
+		vector->capacity *= 2;
+	}
+}
+
 struct element *element_alloc(void *data, size_t size) {
 	struct element *element = (struct element *) malloc(sizeof(struct element));
 
@@ -92,11 +99,4 @@ void vector_dealloc(struct vector *vector) {
 
 	free(vector->elements);
 	free(vector);
-}
-
-static void vector_ensure_capacity(struct vector *vector) {
-	if ((vector->length + 1) == vector->capacity) {
-		vector->elements = (struct element **) realloc(vector->elements, sizeof(struct element) * 2 * vector->capacity);
-		vector->capacity *= 2;
-	}
 }
