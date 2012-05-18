@@ -82,7 +82,7 @@ void linkedlist_remove_tail(struct list *list) {
 	list->size--;
 }
 
-int linkedlist_contains(struct list *list, void *data, int(*compare_to)(void *, void *)) {
+int linkedlist_contains(struct list *list, void *data, int (*compare_to)(void *, void *)) {
 	struct node *temp = list->head->next;
 
 	while (temp != NULL) {
@@ -106,12 +106,12 @@ void linkedlist_dealloc_list(struct list *list) {
 	free(list);
 }
 
-void linkedlist_sort(struct list *list, int(*compare_to)(void *, void *)) {
+void linkedlist_sort(struct list *list, int (*compare_to)(void *, void *)) {
 	struct node *temp = linkedlist_merge_sort(list->head->next, compare_to);
 	list->head->next = temp;
 }
 
-static struct node *linkedlist_merge_sort(struct node *node, int(*compare_to)(void *, void *)) {
+static struct node *linkedlist_merge_sort(struct node *node, int (*compare_to)(void *, void *)) {
 	if (node == NULL || node->next == NULL)
 		return node;
 
@@ -143,7 +143,7 @@ struct node *linkedlist_sort_middle(struct node *node) {
 	return middle;
 }
 
-struct node *linkedlist_merge(struct node *left, struct node *right, int(*compare_to)(void *, void *)) {
+struct node *linkedlist_merge(struct node *left, struct node *right, int (*compare_to)(void *, void *)) {
 	struct node *dummy = linkedlist_alloc_node(NULL, NULL, 0);
 	struct node *current = dummy;
 
@@ -169,4 +169,20 @@ struct node *linkedlist_merge(struct node *left, struct node *right, int(*compar
 	linkedlist_dealloc_node(dummy);
 
 	return current;
+}
+
+struct list_iterator *linkedlist_iterator(struct list *list) {
+	struct list_iterator *iterator = (struct list_iterator *) malloc(sizeof(struct list_iterator));
+	iterator->current = list->head->next;
+
+	return iterator;
+}
+
+void *iterator_current(struct list_iterator *iterator) {
+	return iterator->current->data;
+}
+
+void iterator_next(struct list_iterator *iterator) {
+	if (iterator->current->next != NULL)
+		iterator->current = iterator->current->next;
 }

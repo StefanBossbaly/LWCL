@@ -17,6 +17,10 @@ struct list {
 	int size;
 };
 
+struct list_iterator {
+	struct node *current;
+};
+
 //Node Operations
 static struct node *linkedlist_alloc_node(struct node *next, void *data, size_t size);
 static inline void linkedlist_dealloc_node(struct node *node);
@@ -33,5 +37,10 @@ void linkedlist_sort(struct list *list, int (*compare_to)(void *, void *));
 static struct node *linkedlist_merge_sort(struct node *node, int (*compare_to)(void *, void *));
 struct node *linkedlist_sort_middle(struct node *node);
 struct node *linkedlist_merge(struct node *left, struct node *right, int (*compare_to)(void *, void *));
+struct list_iterator *linkedlist_iterator(struct list *list);
+
+//List Iterator Operations
+void *iterator_current(struct list_iterator *iterator);
+void iterator_next(struct list_iterator *iterator);
 
 #endif /* LINKEDLIST_H_ */
