@@ -3,6 +3,9 @@
 static void vector_ensure_capacity(struct vector *vector) {
 	if ((vector->length + 1) == vector->capacity) {
 		vector->elements = (struct element **) realloc(vector->elements, sizeof(struct element) * 2 * vector->capacity);
+		if (vector->elements == NULL)
+			return;
+
 		vector->capacity *= 2;
 	}
 }
@@ -10,10 +13,8 @@ static void vector_ensure_capacity(struct vector *vector) {
 struct element *element_alloc(void *data, size_t size) {
 	struct element *element = (struct element *) malloc(sizeof(struct element));
 
-	if (element == NULL) {
-		printf("Error allocating memory");
-		exit(1);
-	}
+	if (element == NULL)
+		return NULL;
 
 	if (data != NULL) {
 		element->data = malloc(size);
@@ -36,7 +37,14 @@ struct vector *vector_alloc() {
 struct vector *vector_alloc_with_size(size_t size) {
 	struct vector *vector = (struct vector *) malloc(sizeof(struct vector));
 
+	if (vector == NULL)
+		return NULL;
+
 	vector->elements = (struct element **) malloc(size * sizeof(struct element));
+
+	if (vector->elements == NULL)
+		return NULL;
+
 	vector->capacity = size;
 	vector->length = 0;
 

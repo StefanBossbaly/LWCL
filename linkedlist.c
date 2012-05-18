@@ -3,10 +3,8 @@
 static struct node *linkedlist_alloc_node(struct node *next, void *data, size_t size) {
 	struct node *node = malloc(sizeof(struct node));
 
-	if (node == NULL) {
-		printf("Error allocating memory");
-		exit(1);
-	}
+	if (node == NULL)
+		return NULL;
 
 	node->next = next;
 
@@ -28,10 +26,8 @@ static inline void linkedlist_dealloc_node(struct node *node) {
 struct list *linkedlist_alloc_list() {
 	struct list *list = malloc(sizeof(struct list));
 
-	if (list == NULL) {
-		printf("Error allocating memory");
-		exit(1);
-	}
+	if (list == NULL)
+		return NULL;
 
 	list->head = list->tail = linkedlist_alloc_node(NULL, NULL, 0);
 
