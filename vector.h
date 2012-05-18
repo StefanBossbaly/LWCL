@@ -32,6 +32,4 @@ void vector_delete(struct vector *vector, int index);
 int vector_contains(struct vector *vector, void *data, int (*compare_to)(void *, void *));
 void vector_dealloc(struct vector *vector);
 
-static void vector_ensure_capacity(struct vector *vector);
-
 #endif /* VECTOR_C_ */

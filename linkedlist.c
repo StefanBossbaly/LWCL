@@ -128,7 +128,7 @@ static struct node *linkedlist_merge_sort(struct node *node, int (*compare_to)(v
 	return linkedlist_merge(left, right, compare_to);
 }
 
-struct node *linkedlist_sort_middle(struct node *node) {
+static struct node *linkedlist_sort_middle(struct node *node) {
 	if (node == NULL)
 		return node;
 
@@ -143,7 +143,7 @@ struct node *linkedlist_sort_middle(struct node *node) {
 	return middle;
 }
 
-struct node *linkedlist_merge(struct node *left, struct node *right, int (*compare_to)(void *, void *)) {
+static struct node *linkedlist_merge(struct node *left, struct node *right, int (*compare_to)(void *, void *)) {
 	struct node *dummy = linkedlist_alloc_node(NULL, NULL, 0);
 	struct node *current = dummy;
 
@@ -187,6 +187,6 @@ void iterator_next(struct list_iterator *iterator) {
 		iterator->current = iterator->current->next;
 }
 
-int iterator_has_next(struct list_iterator *iterator){
+int iterator_has_next(struct list_iterator *iterator) {
 	return iterator->current->next != NULL;
 }
