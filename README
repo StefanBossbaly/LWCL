@@ -6,7 +6,7 @@ Lightweight C Library (LWCL)
 A simple C library written by a bored college student. This library is
 still very much in development. Eventually I will be adding more data
 structures. This is a great solution for simple programs or if you
-need data strutures low power devices (for example Arduino).
+need data strutures for low power devices (for example Arduino).
 
 --- Compiling ---
 This project uses a make file to build. Each data structure has its
