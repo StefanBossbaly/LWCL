@@ -2,6 +2,10 @@
 *.o
 *.out
 
+#Library Files
+*.a
+*.so
+
 #Linux Temp
 *~
 
