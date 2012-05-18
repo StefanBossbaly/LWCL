@@ -72,14 +72,14 @@ void vector_delete(struct vector *vector, int index) {
 	vector->length--;
 }
 
-int vector_contains(struct vector *vector, void *data, int(*compare_to)(void *, void *)) {
+int vector_contains(struct vector *vector, void *data, int (*compare_to)(void *, void *)) {
 	int i = 0;
 
 	for (i = 0; i < vector->length; i++) {
 		if (compare_to(data, vector->elements[i]->data) == 0)
 			return 1;
 	}
-	
+
 	return 0;
 }
 

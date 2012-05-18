@@ -29,7 +29,7 @@ int main(void) {
 	
 	linkedlist_sort(my_list, compare);
 	//print_list(my_list);
-	
+
 	linkedlist_dealloc_list(my_list);
 
 	return 0;
