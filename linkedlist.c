@@ -186,3 +186,7 @@ void iterator_next(struct list_iterator *iterator) {
 	if (iterator->current->next != NULL)
 		iterator->current = iterator->current->next;
 }
+
+int iterator_has_next(struct list_iterator *iterator){
+	return iterator->current->next != NULL;
+}

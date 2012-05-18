@@ -42,5 +42,6 @@ struct list_iterator *linkedlist_iterator(struct list *list);
 //List Iterator Operations
 void *iterator_current(struct list_iterator *iterator);
 void iterator_next(struct list_iterator *iterator);
+int iterator_has_next(struct list_iterator *iterator);
 
 #endif /* LINKEDLIST_H_ */
