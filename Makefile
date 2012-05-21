@@ -1,5 +1,5 @@
-HEADERS = linkedlist.h vector.h
-OBJS = linkedlist.o vector.o
+HEADERS = linkedlist.h vector.h tree.h
+OBJS = linkedlist.o vector.o tree.o
 CC = gcc
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -15,11 +15,17 @@ linkedlisttest: liblwcl.a
 vectortest: liblwcl.a
 	$(CC) $(OPTS) vectortest.c $(LDFLAGS) -o vectortest
 
+treetest: liblwcl.a
+	$(CC) $(OPTS) treetest.c $(LDFLAGS) -o treetest
+
 linkedlist.o: linkedlist.h linkedlist.c
 	$(CC) $(OPTS) -c linkedlist.c
 	
 vector.o: vector.h vector.c
 	$(CC) $(OPTS) -c vector.c
+	
+tree.o: tree.h tree.c
+	$(CC) $(OPTS) -c tree.c
 
 clean:
 	rm -f *test *.o *.a
