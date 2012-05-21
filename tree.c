@@ -80,18 +80,18 @@ int tree_contains(struct tree *tree, void *data) {
 	return tree_contains_helper(tree->root, data, tree->compare_to);
 }
 
-void dealloc_tree_helper(struct node *node) {
+void tree_dealloc_helper(struct node *node) {
 	if (node->left != NULL)
-		dealloc_tree_helper(node->left);
+		tree_dealloc_helper(node->left);
 	if (node->right != NULL)
-		dealloc_tree_helper(node->right);
+		tree_dealloc_helper(node->right);
 
 	tree_dealloc_node(node);
 }
 
-void dealloc_tree(struct tree *tree) {
+void tree_dealloc(struct tree *tree) {
 	if (tree->root != NULL) {
-		dealloc_tree_helper(tree->root);
+		tree_dealloc_helper(tree->root);
 		tree_dealloc_node(tree->root);
 	}
 

@@ -21,6 +21,6 @@ struct tree {
 struct tree *tree_alloc(int (*compare_to)(void *, void *));
 void tree_insert(struct tree *tree, void *data, size_t size);
 int tree_contains(struct tree *tree, void *data);
-void dealloc_tree(struct tree *tree);
+void tree_dealloc(struct tree *tree);
 
 #endif /* TREE_H_ */
