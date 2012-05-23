@@ -80,7 +80,7 @@ int tree_contains(struct tree *tree, void *data) {
 	return tree_contains_helper(tree->root, data, tree->compare_to);
 }
 
-void tree_dealloc_helper(struct node *node) {
+static void tree_dealloc_helper(struct node *node) {
 	if (node->left != NULL)
 		tree_dealloc_helper(node->left);
 	if (node->right != NULL)
@@ -90,10 +90,21 @@ void tree_dealloc_helper(struct node *node) {
 }
 
 void tree_dealloc(struct tree *tree) {
-	if (tree->root != NULL) {
+	if (tree->root != NULL)
 		tree_dealloc_helper(tree->root);
-		tree_dealloc_node(tree->root);
-	}
-
 	free(tree);
+}
+
+static void tree_treverse_inorder_helper(struct node *node) {
+	if (node == NULL)
+		return;
+
+	tree_treverse_inorder_helper(node->left);
+	printf("%i,", *((int *) node->data));
+	tree_treverse_inorder_helper(node->right);
+}
+
+void tree_treverse_inorder(struct tree *tree) {
+	tree_treverse_inorder_helper(tree->root);
+	printf("\n");
 }

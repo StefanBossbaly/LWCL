@@ -22,5 +22,6 @@ struct tree *tree_alloc(int (*compare_to)(void *, void *));
 void tree_insert(struct tree *tree, void *data, size_t size);
 int tree_contains(struct tree *tree, void *data);
 void tree_dealloc(struct tree *tree);
+void tree_treverse_inorder(struct tree *tree);
 
 #endif /* TREE_H_ */
