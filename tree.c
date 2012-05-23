@@ -108,3 +108,31 @@ void tree_treverse_inorder(struct tree *tree) {
 	tree_treverse_inorder_helper(tree->root);
 	printf("\n");
 }
+
+static void *tree_min_helper(struct node *node) {
+	if (node->left != NULL)
+		return tree_min_helper(node->left);
+	else
+		return node->data;
+}
+
+void *tree_min(struct tree *tree) {
+	if (tree->root != NULL)
+		return tree_min_helper(tree->root);
+	else
+		return NULL;
+}
+
+static void *tree_max_helper(struct node *node) {
+	if (node->right != NULL)
+		return tree_max_helper(node->right);
+	else
+		return node->data;
+}
+
+void *tree_max(struct tree *tree) {
+	if (tree->root != NULL)
+		return tree_max_helper(tree->root);
+	else
+		return NULL;
+}
